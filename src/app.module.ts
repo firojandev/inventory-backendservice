@@ -3,8 +3,21 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CategoryModule } from './category/category.module';
 
+import { TypeOrmModule } from '@nestjs/typeorm';
+
 @Module({
-  imports: [CategoryModule],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 8889,
+      username: 'root',
+      password: '123456',
+      database: 'inventory',
+      autoLoadEntities:true,
+      synchronize: true,
+    }),
+  CategoryModule],
   controllers: [AppController],
   providers: [AppService],
 })
