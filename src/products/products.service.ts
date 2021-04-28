@@ -11,7 +11,9 @@ export class ProductsService {
     }
 
     async all(): Promise<products[]>{
-        return this.productsRepository.find();
+       // return this.productsRepository.find();
+       const products = await this.productsRepository.find({ relations: ["category","units"] });
+       return products;
      }
  
      async create(data){
